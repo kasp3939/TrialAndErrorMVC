@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using System.Web.Mvc;
 using TrialAndErrorMVC.Models;
 
@@ -27,11 +26,10 @@ namespace TrialAndErrorMVC.Controllers
             return View(newProduct);
         }
 
-        public ActionResult Edit(int productId)
+        public ActionResult Edit(int productId, string descriptionP, decimal priceP)
         {
-            var pro = repo.GetAll();
-            pro.Where(prod => prod.ProductId == productId).FirstOrDefault();
-            return View(pro);
+            repo.EditProduct(productId, descriptionP, priceP);
+            return RedirectToAction("GetAll");
         }
 
         [HttpPost]
@@ -45,24 +43,24 @@ namespace TrialAndErrorMVC.Controllers
             return RedirectToAction("GetAll");
         }
 
-        public ActionResult Delete(int ID)
-        {
-            Product product = repo.FindProductById(ID);
-            if (product == null)
-            {
-                return HttpNotFound();
-            }
-            return View(product);
-        }
+        //public ActionResult Delete(int ID)
+        //{
+        //    Product product = repo.FindProductById(ID);
+        //    if (product == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(product);
+        //}
 
-        [HttpPost, ActionName("Delete")]
-        public ActionResult DeleteConfirmed(int ID)
-        {
-            Product product = repo.FindProductById(ID);
-            repo.listOfProducts.Remove(product);
+        //[HttpPost, ActionName("Delete")]
+        //public ActionResult DeleteConfirmed(int ID)
+        //{
+        //    Product product = repo.FindProductById(ID);
+        //    repo.listOfProducts.Remove(product);
             
-            return RedirectToAction("GetAll");
-        }
+        //    return RedirectToAction("GetAll");
+        //}
     }
 }
 
