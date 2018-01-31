@@ -21,9 +21,7 @@
         <th>
             @Html.DisplayNameFor(model => model.Price)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IsInStore)
-        </th>
+
         <th></th>
     </tr>
 
@@ -38,9 +36,7 @@
         <td>
             @Html.DisplayFor(modelItem => item.Price)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IsInStore)
-        </td>
+
         <td>
             @Html.ActionLink("Edit", "Edit", new { id = item.ProductId }) |
             @Html.ActionLink("Details", "Details", new { id = item.ProductId }) |

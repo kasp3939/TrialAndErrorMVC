@@ -8,11 +8,11 @@ namespace TrialAndErrorMVC.Models
         public List<Product> listOfProducts = new List<Product>();
         public object _lock = new object();
 
-        Product A = new Product { ProductId = 1, ProductDescription = "Bjørn", Price = 223213, IsInStore = true };
-        Product B = new Product { ProductId = 2, ProductDescription = "Hest", Price = 112312300, IsInStore = true };
-        Product C = new Product { ProductId = 3, ProductDescription = "Bi", Price = 10123120, IsInStore = false };
-        Product D = new Product { ProductId = 4, ProductDescription = "VBkl", Price = 1023120, IsInStore = true };
-        Product E = new Product { ProductId = 5, ProductDescription = "Beheh", Price = 10213230, IsInStore = false };
+        Product A = new Product { ProductId = 1, ProductDescription = "Bjørn", Price = 22.04M };
+        Product B = new Product { ProductId = 2, ProductDescription = "Hest", Price = 223.55M };
+        Product C = new Product { ProductId = 3, ProductDescription = "Bi", Price = 102.12M};
+        Product D = new Product { ProductId = 4, ProductDescription = "VBkl", Price = 29.99M };
+        Product E = new Product { ProductId = 5, ProductDescription = "Beheh", Price = 32.55M  };
 
         public void Add(Product product)
         {
@@ -64,7 +64,6 @@ namespace TrialAndErrorMVC.Models
                     product.Price = _price;
                 }
             }
-
         }
 
     }

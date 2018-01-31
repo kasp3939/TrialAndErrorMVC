@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Net;
 using System.Web.Mvc;
 using TrialAndErrorMVC.Models;
 
@@ -48,10 +47,6 @@ namespace TrialAndErrorMVC.Controllers
 
         public ActionResult Delete(int ID)
         {
-            if (ID == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             Product product = repo.FindProductById(ID);
             if (product == null)
             {
