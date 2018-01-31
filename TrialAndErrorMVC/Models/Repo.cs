@@ -52,6 +52,21 @@ namespace TrialAndErrorMVC.Models
             }
         }
 
+        public void EditProduct(int _productId, string _description, decimal _price)
+        {
+            Product product = FindProductById(_productId);
+            lock (_lock)
+            {
+                if (product != null)
+                {
+                    product.ProductId = _productId;
+                    product.ProductDescription = _description;
+                    product.Price = _price;
+                }
+            }
+
+        }
+
     }
 }
 

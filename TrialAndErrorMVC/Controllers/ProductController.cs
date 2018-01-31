@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
+using System.Net;
 using System.Web.Mvc;
 using TrialAndErrorMVC.Models;
 
@@ -14,7 +16,7 @@ namespace TrialAndErrorMVC.Controllers
             list = repo.GetAll();
             return View(list);
         }
-
+        
         public ActionResult Create()
         {
             return View();
@@ -23,8 +25,48 @@ namespace TrialAndErrorMVC.Controllers
         [HttpPost]
         public ActionResult Create(Product newProduct)
         {
-            
             return View(newProduct);
+        }
+
+        public ActionResult Edit(int productId)
+        {
+            var pro = repo.GetAll();
+            pro.Where(prod => prod.ProductId == productId).FirstOrDefault();
+            return View(pro);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(Product product)
+        {
+            var id = product.ProductId;
+            var descript = product.ProductDescription;
+            var price = product.Price;
+
+
+            return RedirectToAction("GetAll");
+        }
+
+        public ActionResult Delete(int ID)
+        {
+            if (ID == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Product product = repo.FindProductById(ID);
+            if (product == null)
+            {
+                return HttpNotFound();
+            }
+            return View(product);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        public ActionResult DeleteConfirmed(int ID)
+        {
+            Product product = repo.FindProductById(ID);
+            repo.listOfProducts.Remove(product);
+            
+            return RedirectToAction("GetAll");
         }
     }
 }
@@ -44,7 +86,7 @@ namespace TrialAndErrorMVC.Controllers
 //    return View(productList);
 //}
 
-//public ActionResult Create()
+//public ActionResult Create(int productID, string descriptionP, decimal priceP, bool isItInStore)
 //{
 //    return View();
 //}
