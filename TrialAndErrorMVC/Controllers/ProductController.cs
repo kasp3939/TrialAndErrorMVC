@@ -23,6 +23,9 @@ namespace TrialAndErrorMVC.Controllers
         [HttpPost]
         public ActionResult Create(Product newProduct)
         {
+            int productID = newProduct.ProductId;
+            string description = newProduct.ProductDescription;
+            decimal price = newProduct.Price;
             return View(newProduct);
         }
 
