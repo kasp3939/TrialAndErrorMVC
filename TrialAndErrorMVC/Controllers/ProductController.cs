@@ -20,10 +20,10 @@ namespace TrialAndErrorMVC.Controllers
             return View();
         }
 
-        [HttpPost]
+        [HttpPost, ActionName("Create")]
         public ActionResult Create(Product newProduct)
         {
-            return View(newProduct);
+            return View("Create", newProduct);
         }
 
         public ActionResult Edit(int productId, string descriptionP, decimal priceP)
@@ -35,32 +35,27 @@ namespace TrialAndErrorMVC.Controllers
         [HttpPost]
         public ActionResult Edit(Product product)
         {
-            var id = product.ProductId;
-            var descript = product.ProductDescription;
-            var price = product.Price;
-
-
             return RedirectToAction("GetAll");
         }
 
-        //public ActionResult Delete(int ID)
-        //{
-        //    Product product = repo.FindProductById(ID);
-        //    if (product == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View(product);
-        //}
+        public ActionResult Delete(int ID)
+        {
+            Product product = repo.FindProductById(ID);
+            if (product == null)
+            {
+                return HttpNotFound();
+            }
+            return View(product);
+        }
 
-        //[HttpPost, ActionName("Delete")]
-        //public ActionResult DeleteConfirmed(int ID)
-        //{
-        //    Product product = repo.FindProductById(ID);
-        //    repo.listOfProducts.Remove(product);
-            
-        //    return RedirectToAction("GetAll");
-        //}
+        [HttpPost, ActionName("Delete")]
+        public ActionResult DeleteConfirmed(int ID)
+        {
+            Product product = repo.FindProductById(ID);
+            repo.listOfProducts.Remove(product);
+
+            return RedirectToAction("GetAll");
+        }
     }
 }
 
