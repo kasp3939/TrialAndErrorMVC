@@ -5,16 +5,16 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Opret nyt Produkt</h2>
+<h2>Create</h2>
 
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
     
 <div class="form-horizontal">
-    
+    <h4>Product</h4>
     <hr />
-
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     <div class="form-group">
         @Html.LabelFor(model => model.ProductId, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
@@ -23,7 +23,6 @@
         </div>
     </div>
 
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     <div class="form-group">
         @Html.LabelFor(model => model.ProductDescription, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
@@ -40,13 +39,10 @@
         </div>
     </div>
 
-   
-
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
             <input id="Submit" type="button" value="Submit" formmethod="post") />
         </div>
-        
     </div>
 </div>
 }
