@@ -14,7 +14,7 @@ namespace TrialAndErrorMVC.Models
         Product D = new Product { ProductId = 4, ProductDescription = "VBkl", Price = 29.99M };
         Product E = new Product { ProductId = 5, ProductDescription = "Beheh", Price = 32.55M  };
 
-        public void Add(Product product)
+        public void AddProduct(Product product)
         {
             listOfProducts.Add(product);
         }

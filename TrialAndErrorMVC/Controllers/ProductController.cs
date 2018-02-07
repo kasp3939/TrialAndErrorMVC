@@ -14,15 +14,15 @@ namespace TrialAndErrorMVC.Controllers
             list = repo.GetAll();
             return View(list);
         }
-        
         public ActionResult Create()
         {
             return View();
         }
-
+      
         [HttpPost, ActionName("Create")]
         public ActionResult Create(Product newProduct)
         {
+            repo.AddProduct(newProduct);
             return View("Create", newProduct);
         }
 
@@ -35,7 +35,7 @@ namespace TrialAndErrorMVC.Controllers
         [HttpPost]
         public ActionResult Edit(Product product)
         {
-            return RedirectToAction("GetAll");
+            return RedirectToAction("GetAll", product);
         }
 
         public ActionResult Delete(int ID)
@@ -54,7 +54,7 @@ namespace TrialAndErrorMVC.Controllers
             Product product = repo.FindProductById(ID);
             repo.listOfProducts.Remove(product);
 
-            return RedirectToAction("GetAll");
+            return RedirectToAction("GetAll", ID);
         }
     }
 }
